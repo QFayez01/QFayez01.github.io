@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rate This Spot</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -26,28 +27,29 @@
             <h2>Add New Spot</h2>
             <form id="add-spot-form">
                 <label for="spot-name">Spot Name:</label>
-                <input type="text" id="spot-name" required>
+                <input type="text" id="spot-name" title="Enter the name of the spot" required>
                 <label for="spot-review">Review:</label>
-                <textarea id="spot-review" required></textarea>
+                <textarea id="spot-review" title="Write a brief review of the spot" required></textarea>
                 <label for="spot-rating">Rating:</label>
-                <input type="number" id="spot-rating" min="1" max="5" required>
+                <input type="number" id="spot-rating" min="1" max="5" title="Rate the spot between 1 and 5" required>
                 <button type="submit">Submit</button>
             </form>
         </section>
         <section id="profile">
             <h2>Profile</h2>
-           
+            
         </section>
-        <section id="gallery">
+        <section id="image-gallery">
             <h2>Image Gallery</h2>
-            <div class="image-gallery">
-                <img src="images/pic1.jfif" alt="Image 1">
-                <img src="images/pic2.jfif" alt="Image 2">
-                <img src="images/pic3.jpg" alt="Image 3">
+            <div id="gallery-container">
+                <img src="images/pic1.jfif" alt="Spot 1">
+                <img src="images/pic2.jfif" alt="Spot 2">
+                <img src="images/pic3.jpg" alt="Spot 3">
             </div>
         </section>
     </main>
     <script src="script.js"></script>
 </body>
 </html>
+
 

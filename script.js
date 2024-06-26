@@ -5,6 +5,7 @@ document.getElementById('add-spot-form').addEventListener('submit', function(eve
     const spotRating = document.getElementById('spot-rating').value;
 
     const spot = {
+        id: Date.now(),
         name: spotName,
         review: spotReview,
         rating: spotRating
@@ -12,6 +13,7 @@ document.getElementById('add-spot-form').addEventListener('submit', function(eve
 
     addSpotToLocalStorage(spot);
     displaySpots();
+    document.getElementById('add-spot-form').reset();
 });
 
 function addSpotToLocalStorage(spot) {
@@ -34,32 +36,34 @@ function displaySpots() {
         spots = JSON.parse(spots);
         spots.forEach(spot => {
             const spotElement = document.createElement('div');
-            spotElement.innerHTML = `<h3>${spot.name}</h3><p>${spot.review}</p><p>Rating: ${spot.rating}</p>`;
+            spotElement.innerHTML = `
+                <h3>${spot.name}</h3>
+                <p>${spot.review}</p>
+                <p>Rating: ${spot.rating}</p>
+                <button onclick="editSpot(${spot.id})">Edit</button>
+                <button onclick="deleteSpot(${spot.id})">Delete</button>
+            `;
             spotsContainer.appendChild(spotElement);
         });
     }
 }
 
-// New functions for handling the image gallery
-function displayGallery() {
-    const imageGalleryContainer = document.getElementById('image-gallery');
-    imageGalleryContainer.innerHTML = '';
+function editSpot(id) {
+    let spots = JSON.parse(localStorage.getItem('spots'));
+    const spot = spots.find(spot => spot.id === id);
+    document.getElementById('spot-name').value = spot.name;
+    document.getElementById('spot-review').value = spot.review;
+    document.getElementById('spot-rating').value = spot.rating;
 
-    const images = [
-        'images/spot1.jpg',
-        'images/spot2.jpg',
-        'images/spot3.jpg'
-    ];
-
-    images.forEach(image => {
-        const imgElement = document.createElement('img');
-        imgElement.src = image;
-        imageGalleryContainer.appendChild(imgElement);
-    });
+    deleteSpot(id);
 }
 
-window.onload = function() {
+function deleteSpot(id) {
+    let spots = JSON.parse(localStorage.getItem('spots'));
+    spots = spots.filter(spot => spot.id !== id);
+    localStorage.setItem('spots', JSON.stringify(spots));
     displaySpots();
-    displayGallery();
-};
+}
+
+window.onload = displaySpots;
 
