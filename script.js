@@ -40,4 +40,26 @@ function displaySpots() {
     }
 }
 
-window.onload = displaySpots;
+// New functions for handling the image gallery
+function displayGallery() {
+    const imageGalleryContainer = document.getElementById('image-gallery');
+    imageGalleryContainer.innerHTML = '';
+
+    const images = [
+        'images/spot1.jpg',
+        'images/spot2.jpg',
+        'images/spot3.jpg'
+    ];
+
+    images.forEach(image => {
+        const imgElement = document.createElement('img');
+        imgElement.src = image;
+        imageGalleryContainer.appendChild(imgElement);
+    });
+}
+
+window.onload = function() {
+    displaySpots();
+    displayGallery();
+};
+

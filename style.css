@@ -57,3 +57,15 @@ form button {
 form button:hover {
     background-color: #45a049;
 }
+
+.image-gallery {
+    display: flex;
+    gap: 10px;
+}
+
+.image-gallery img {
+    width: 200px;
+    height: auto;
+}
+
+
